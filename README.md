@@ -1,3 +1,5 @@
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/DnC275/Users-CRUD-with-token-authentication)
+![GitHub repo size](https://img.shields.io/github/repo-size/DnC275/Users-CRUD-with-token-authentication)
 # CRUD для пользователей с токен аутентификацией
 
 ## Запуск и развертывание сервиса
