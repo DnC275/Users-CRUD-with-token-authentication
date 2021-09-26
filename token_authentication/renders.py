@@ -17,6 +17,9 @@ class UserJSONRenderer(JSONRenderer):
         if token is not None and isinstance(token, bytes):
             data['token'] = token.decode('utf-8')
 
+        if token is not None and isinstance(token, str) and len(token) > 2 and token[:2] == "b'":
+            data['token'] = token[2:-1]
+
         return json.dumps({
             'user': data
         })

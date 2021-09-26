@@ -51,10 +51,11 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('email', 'username', 'password', 'token',)
-        read_only_fields = ['token', ]
+        fields = ('email', 'username', 'password', 'is_staff',)
+        # read_only_fields = ['token', ]
 
     def update(self, instance, validated_data):
+        print('update')
         password = validated_data.pop('password', None)
         for key, value in validated_data.items():
             setattr(instance, key, value)
@@ -65,3 +66,11 @@ class UserSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
+
+
+class AdminViewAllSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(max_length=128, min_length=8, write_only=True)
+
+    class Meta:
+        model = User
+        fields = ('id', 'email', 'username', 'password', 'is_staff',)
