@@ -16,13 +16,18 @@ class RegistrationSerializer(serializers.ModelSerializer):
         return user
 
 
-class LoginSerializer(serializers.Serializer):
+class LoginSerializer(serializers.ModelSerializer):
     email = serializers.CharField(max_length=255)
     username = serializers.CharField(max_length=255, read_only=True)
     password = serializers.CharField(max_length=128, write_only=True)
     token = serializers.CharField(max_length=255, read_only=True)
 
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password', 'token']
+
     def validate(self, data):
+        print(data)
         email = data.get('email', None)
         password = data.get('password', None)
         if email is None:
